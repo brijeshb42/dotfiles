@@ -48,8 +48,8 @@ set smartcase
 set hlsearch
 
 " UI related
-set guifont=Consolas:h14
-colorscheme OceanicNext
+set guifont=Consolas:h16
+colorscheme chroma
 set wildmenu
 set wildmode=longest,list
 " Always show sign column for linters so that the UI does not jump
@@ -93,8 +93,6 @@ imap jj <ESC>
 inoremap <C-s> <Esc>:w<CR>a
 vmap <C-s> <Esc>:w<CR>gv
 
-"No need to do shift + ; to write command
-nnoremap ; :
 "Quit vim
 inoremap <C-q> <Esc>:qa<CR>
 nnoremap <C-q> :qa<CR>
