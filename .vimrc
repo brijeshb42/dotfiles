@@ -1,6 +1,15 @@
 set nocompatible
 filetype off
 
+" Required to be declared before loading ale
+let g:ale_completion_enabled = 1
+" Configure ack to use ag
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -19,7 +28,7 @@ Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'ap/vim-buftabline'
 Plugin 'briancollins/vim-jst'
-Plugin 'jceb/vim-orgmode'
+Plugin 'mileszs/ack.vim'
 call vundle#end()
 
 " File related
@@ -49,7 +58,7 @@ set hlsearch
 
 " UI related
 set guifont=Consolas:h16
-colorscheme chroma
+colorscheme OceanicNext
 set wildmenu
 set wildmode=longest,list
 " Always show sign column for linters so that the UI does not jump
@@ -79,9 +88,10 @@ set noerrorbells         " don't beep
 set hidden
 
 " Key mapping
-nnoremap <C-L> :bnext<CR>
-nnoremap <C-H> :bprev<CR>
+nnoremap <C-l> :bnext<CR>
+nnoremap <C-h> :bprev<CR>
 nnoremap <C-x> :bd<CR>
+nnoremap <C-S-x> :bd!<CR>
 let mapleader=","
 "----------------Force to not use arrow keys----------------
 map <up> <nop>
@@ -91,7 +101,6 @@ map <right> <nop>
 "Press jj twice to goto normal mode
 imap jj <ESC>
 inoremap <C-s> <Esc>:w<CR>a
-vmap <C-s> <Esc>:w<CR>gv
 
 "Quit vim
 inoremap <C-q> <Esc>:qa<CR>
@@ -100,8 +109,6 @@ nnoremap <C-q> :qa<CR>
 "Find shortcut
 inoremap <C-f> <Esc>/
 nnoremap <C-f> /
-" inoremap <C-S-f> <Esc>%
-" nnoremap <C-S-f> %
 "Undo
 inoremap <C-z> <Esc>:undo<CR>i
 nnoremap <C-z> :undo<CR>
@@ -109,9 +116,13 @@ nnoremap <C-z> :undo<CR>
 nnoremap <space> za
 "Clear last highlighted search
 nnoremap <leader><space> :noh<CR>
+" Goto definition
+nnoremap <leader>g :ALEGoToDefinition<CR>
 " Find current file in the directory tree
 map <leader>r :NERDTreeFind<CR>
 map <C-b> :NERDTreeToggle<CR>
+" Start search
+map <leader>a :Ack!<space>
 "--------------------------Indentation-----------------------------
 set autoindent
 set shiftwidth=2
@@ -149,7 +160,6 @@ set nobackup
 set nowb
 
 " Linter settings
-let g:ale_completion_enabled = 1
 let g:javascript_plugin_flow = 1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow'],
