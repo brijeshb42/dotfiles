@@ -3,12 +3,20 @@ filetype off
 
 " Required to be declared before loading ale
 let g:ale_completion_enabled = 1
+
 " Configure ack to use ag
 let g:ackprg = 'ag --vimgrep --smart-case'
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
+
+" Nerdtree setup
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -29,6 +37,7 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'ap/vim-buftabline'
 Plugin 'briancollins/vim-jst'
 Plugin 'mileszs/ack.vim'
+Plugin 'GutenYe/json5.vim'
 call vundle#end()
 
 " File related
@@ -57,7 +66,7 @@ set smartcase
 set hlsearch
 
 " UI related
-set guifont=Consolas:h16
+set guifont=Inconsolata:h18
 colorscheme OceanicNext
 set wildmenu
 set wildmode=longest,list
@@ -116,8 +125,10 @@ nnoremap <C-z> :undo<CR>
 nnoremap <space> za
 "Clear last highlighted search
 nnoremap <leader><space> :noh<CR>
-" Goto definition
+" Ale related
 nnoremap <leader>g :ALEGoToDefinition<CR>
+nnoremap <leader>p :ALEPrevious<CR>
+nnoremap <leader>n :ALENext<CR>
 " Find current file in the directory tree
 map <leader>r :NERDTreeFind<CR>
 map <C-b> :NERDTreeToggle<CR>
