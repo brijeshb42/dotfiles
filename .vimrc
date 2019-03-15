@@ -38,6 +38,7 @@ Plugin 'ap/vim-buftabline'
 Plugin 'briancollins/vim-jst'
 Plugin 'mileszs/ack.vim'
 Plugin 'GutenYe/json5.vim'
+Plugin 'chr4/nginx.vim'
 call vundle#end()
 
 " File related
@@ -175,6 +176,7 @@ let g:javascript_plugin_flow = 1
 let g:ale_linters = {
 \ 'javascript': ['eslint', 'flow'],
 \ 'typescript': ['tsserver'],
+\ 'css': ['stylelint'],
 \}
 
 highlight clear ALEErrorSign
