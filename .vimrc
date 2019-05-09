@@ -17,6 +17,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
+let g:buftabline_indicators = 1
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -39,6 +40,8 @@ Plugin 'briancollins/vim-jst'
 Plugin 'mileszs/ack.vim'
 Plugin 'GutenYe/json5.vim'
 Plugin 'chr4/nginx.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'cespare/vim-toml'
 call vundle#end()
 
 " File related
@@ -183,3 +186,10 @@ highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
+
+" Map file extensions to syntax
+augroup jenkins
+  au!
+  autocmd BufNewFile,BufRead *.jenkinsfile set syntax=groovy
+augroup END
+
