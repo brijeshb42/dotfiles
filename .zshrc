@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/brijesh/.oh-my-zsh
+export ZSH=/home/brijesh/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -85,9 +85,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
 
-export PATH=/usr/local/bin:$PATH
-stty -ixon
-
 function br {
   br=`git branch | grep "*"`
   echo ${br/* /}
@@ -105,44 +102,32 @@ export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV=true
 export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # source /usr/local/bin/virtualenvwrapper_lazy.sh
-if [[ -r /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
-  source /usr/local/bin/virtualenvwrapper_lazy.sh
-else
-  echo "WARNING: Can't find virtualenvwrapper_lazy.sh"
-fi
+# if [[ -r /usr/local/bin/virtualenvwrapper_lazy.sh ]]; then
+#   source /usr/local/bin/virtualenvwrapper_lazy.sh
+# else
+#   echo "WARNING: Can't find virtualenvwrapper_lazy.sh"
+# fi
 
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias mergemaster='git merge --no-ff --no-commit origin/master'
-alias copybr="echo `br` | tr -d '\n' | pbcopy"
+alias prettifymod='git status --porcelain | awk '"'"'match($1, "M"){print $2}'"'"' | xargs yarn run prettier --write'
 
 sheet() {
     curl cht.sh/$1
 }
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-#export JAVA_9_HOME=$(/usr/libexec/java_home -v1.8)
-#export JAVA_8_HOME=$(/usr/libexec/java_home -v1.7)
-
-#alias java8='export JAVA_HOME=$JAVA_7_HOME'
-#alias java9='export JAVA_HOME=$JAVA_8_HOME'
-
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/usr/local/opt/imagemagick@7/bin:$PATH"
-export PATH="/Users/brijesh/personal/flutter/bin:$PATH"
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home"
-alias djdb="pg_ctl -D /Users/brijesh/postgres -l logfile start"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="/usr/local/opt/node@8/bin/:$PATH"
-export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/node@8/bin:$PATH"
 
-# bindkey -v
-# bindkey '^r' history-incremental-search-backward
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/brijesh/.sdkman"
+[[ -s "/home/brijesh/.sdkman/bin/sdkman-init.sh" ]] && source "/home/brijesh/.sdkman/bin/sdkman-init.sh"
