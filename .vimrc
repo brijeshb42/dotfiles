@@ -34,14 +34,20 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'HerringtonDarkholme/yats.vim'
-Plugin 'itchyny/lightline.vim'
+" Plugin 'itchyny/lightline.vim'
+" Plugin 'powerline/powerline'
 Plugin 'ap/vim-buftabline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'briancollins/vim-jst'
 Plugin 'mileszs/ack.vim'
 Plugin 'GutenYe/json5.vim'
-Plugin 'chr4/nginx.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'cespare/vim-toml'
+Plugin 'posva/vim-vue'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'junegunn/vim-peekaboo'
+Plugin 'prettier/vim-prettier'
 call vundle#end()
 
 " File related
@@ -70,7 +76,7 @@ set smartcase
 set hlsearch
 
 " UI related
-set guifont=Inconsolata:h18
+set guifont=Inconsolata\ 16
 colorscheme OceanicNext
 set wildmenu
 set wildmode=longest,list
@@ -103,8 +109,8 @@ set hidden
 " Key mapping
 nnoremap <C-l> :bnext<CR>
 nnoremap <C-h> :bprev<CR>
-nnoremap <C-x> :bd<CR>
-nnoremap <C-S-x> :bd!<CR>
+nnoremap <C-x> :BD<CR>
+nnoremap <C-S-x> :BD!<CR>
 let mapleader=","
 "----------------Force to not use arrow keys----------------
 map <up> <nop>
@@ -118,6 +124,10 @@ inoremap <C-s> <Esc>:w<CR>a
 "Quit vim
 inoremap <C-q> <Esc>:qa<CR>
 nnoremap <C-q> :qa<CR>
+
+" Kill buffer without losing the split
+" inoremap <C-S-x> <Esc>:bp|bd<Space>#<CR>
+" nnoremap <C-S-x> :bp|bd<Space>#<CR>
 
 "Find shortcut
 inoremap <C-f> <Esc>/
@@ -133,6 +143,8 @@ nnoremap <leader><space> :noh<CR>
 nnoremap <leader>g :ALEGoToDefinition<CR>
 nnoremap <leader>p :ALEPrevious<CR>
 nnoremap <leader>n :ALENext<CR>
+nnoremap <leader>e :ALEDetail<CR>
+nnoremap <Leader>s :SemanticHighlightToggle<cr>
 " Find current file in the directory tree
 map <leader>r :NERDTreeFind<CR>
 map <C-b> :NERDTreeToggle<CR>
@@ -177,7 +189,7 @@ set nowb
 " Linter settings
 let g:javascript_plugin_flow = 1
 let g:ale_linters = {
-\ 'javascript': ['eslint', 'flow'],
+\ 'javascript': ['eslint', 'flow-language-server'],
 \ 'typescript': ['tsserver'],
 \ 'css': ['stylelint'],
 \}
@@ -193,3 +205,8 @@ augroup jenkins
   autocmd BufNewFile,BufRead *.jenkinsfile set syntax=groovy
 augroup END
 
+" Prettier settings
+let g:prettier#autoformat = 1
+let g:prettier#exec_cmd_async = 1
+let g:prettier#partial_format=1
+" autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx,*.css,*.scss,*.json,*.md,*.html PrettierAsync
